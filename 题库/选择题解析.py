@@ -1,7 +1,7 @@
 import docx
 import json
 
-docxFile = '单选题.docx'
+docxFile = '多选题.docx'
 doc = docx.Document(docxFile)
 timu_list = []
 a_list = []
@@ -18,13 +18,13 @@ for i in doc.paragraphs:
         continue
     if flag == 0:
         tmp_dict["id"] = int(i.text.split("、")[0].strip())
-        tmp_dict["subject"] = i.text.split("、")[-1].strip()
+        tmp_dict["subject"] = i.text.strip() #"".join(i.text.split("、")[1:]).strip()
         flag += 1
     elif 1 <= flag <= 4:
-        tmp_dict["option"][option_dict[flag]] = i.text.split("、")[-1].strip()
+        tmp_dict["option"][option_dict[flag]] = i.text.strip()
         flag += 1
     elif flag == 5:
-        tmp_dict["answer"] = i.text.split("：")[-1].strip()
+        tmp_dict["answer"] = "".join(i.text.split("：")[1:]).strip()
         flag = 0
         timu_list.append(tmp_dict.copy())
         tmp_dict = {
@@ -34,5 +34,5 @@ for i in doc.paragraphs:
             "answer": None,
         }
 
-fp = open("单选题.json","w")
+fp = open("多选题.json","w")
 fp.write(json.dumps(timu_list,ensure_ascii=False))

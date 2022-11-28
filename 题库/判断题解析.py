@@ -16,7 +16,7 @@ for i in doc.paragraphs:
         continue
     if flag == 0:
         tmp_dict["id"] = int(i.text.split("、")[0].strip())
-        tmp_dict["subject"] = i.text.split("、")[-1].strip()
+        tmp_dict["subject"] = i.text.strip()
         flag =  1
     elif flag == 1:
         tmp_dict["answer"] = i.text.split("：")[-1].strip()

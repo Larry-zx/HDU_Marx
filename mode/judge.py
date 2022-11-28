@@ -17,7 +17,7 @@ def start(start_id, random_flag):
             i += 1
             if i >= subject_num: break
         layout = [
-            [sg.Text("%d.%s" % (data[i]["id"], data[i]["subject"]), size=(64, 3), font=20, text_color='Black',
+            [sg.Text(data[i]["subject"], size=(64, 3), font=20, text_color='Black',
                      auto_size_text=True)],
             [sg.Button(' 正确 ', key="正确", font=20), sg.Button(' 错误 ', key="错误", font=20)],
             [sg.Text("正确率:%d/%d" % (acc, count), size=(64, 1), font=30, text_color='black')],
@@ -32,7 +32,7 @@ def start(start_id, random_flag):
         if event != answer:
             str = '正确答案是: %s ' % (answer)
             layout_ = [
-                [sg.Text("%d.%s" % (data[i]["id"], data[i]["subject"]), size=(64, 3), font=20, text_color='Black',
+                [sg.Text("%s" % (data[i]["subject"]), size=(64, 3), font=20, text_color='Black',
                          auto_size_text=True)],
                 [sg.Button('下一题', key="continue", font=20), ],
                 [sg.Text(str, size=(64, 1), font=20, text_color='#CD2626')],
